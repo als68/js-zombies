@@ -56,6 +56,10 @@ function Item(name){
  * @property {number} energy
  */
 
+function Food(name, energy){
+  Item.call(this, name);
+  this.energy = energy;
+}
 
 
 /**
@@ -63,7 +67,7 @@ function Item(name){
  * -----------------------------
  */
 
-
+Food.prototype = Object.create(Item.prototype);
 
 /**
  * Class => Player(name, health, strength, speed)
