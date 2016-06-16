@@ -61,7 +61,6 @@ function Food(name, energy){
   this.energy = energy;
 }
 
-
 /**
  * Food Extends Item Class
  * -----------------------------
@@ -91,6 +90,28 @@ Food.prototype = Object.create(Item.prototype);
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
+function Player(name, health, strength, speed){
+  this.name = name;
+  this.health = health;
+  this.strength = strength;
+  this.speed = speed;
+  this.isAlive = true;
+  this.equipped = false;
+  this.getPack = getPack;
+  this.getMaxHealth = getMaxHealth;
+
+  var pack = [];
+  var maxHealth = health;
+
+  function getPack(){
+    return pack;
+  }
+
+  function getMaxHealth(){
+    return maxHealth;
+  }
+
+
 
 /**
  * Player Class Method => checkPack()
@@ -104,6 +125,9 @@ Food.prototype = Object.create(Item.prototype);
  * @name checkPack
  */
 
+//  this.checkPack = function(){
+//    getPack();
+//  };
 
 /**
  * Player Class Method => takeItem(item)
@@ -122,6 +146,17 @@ Food.prototype = Object.create(Item.prototype);
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
+
+  this.takeItem = function(item){
+    if(pack.length < 3){
+      pack.push(item);
+      console.log("Item successfully added");
+      return true;
+    } else {
+      console.log("No more space in the pack");
+      return false;
+    }
+  };
 
 
 /**
@@ -150,6 +185,15 @@ Food.prototype = Object.create(Item.prototype);
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
+ this.discardItem = function(item){
+
+
+
+ };
+
+
+
+}
 
 /**
  * Player Class Method => equip(itemToEquip)
