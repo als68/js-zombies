@@ -190,9 +190,7 @@ function Player(name, health, strength, speed){
 
   if(pack.indexOf(item) !== -1){
     pack.splice(pack.indexOf(item), 1);
-    console.log(Player.name);
-    console.log(item.name);
-    console.log("Item was discarded");
+    console.log('Discarded');
     return true;
   } else {
     return false;
@@ -267,7 +265,6 @@ function Player(name, health, strength, speed){
     pack.splice(pack.indexOf(itemToEat), 1);
 
     this.health = this.health + itemToEat.energy;
-    console.log(this.health);
 
     if(this.health >= getMaxHealth()){
       this.health = getMaxHealth();
@@ -312,16 +309,17 @@ function Player(name, health, strength, speed){
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
 
- this.equippedWith = function(item){
-  if(item instanceof Weapon){
-    var returnInfo = this.name + " " + Weapon.name;
-    return returnInfo;
+ this.equippedWith = function(){
+  if(this.equipped !== false){
+    var returnInfo = this.name + " " + this.equipped.name;
+    console.log(this.equipped.name);
+    return this.equipped.name;
   } else {
+    console.log('Not equipped');
     return false;
-  }
+    }
 
  };
-
 }
 
 /**
@@ -347,7 +345,7 @@ function Player(name, health, strength, speed){
   this.isAlive = true;
 
   var maxHealth = health;
-
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -367,7 +365,7 @@ function Player(name, health, strength, speed){
  this.FastZombie = function(health, strength, speed){
   Zombie.call(this, health, strength, speed);
  };
-}
+
 
 
 /**
@@ -392,13 +390,16 @@ FastZombie.prototype = Object.create(Zombie.prototype);
  * @param {number} speed            The zombie's speed.
  */
 
+ this.StrongZombie = function(health, strength, speed){
+  Zombie.call(this, health, strength, speed);
+ };
 
 /**
  * StrongZombie Extends Zombie Class
  * -----------------------------
  */
 
-
+StrongZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Class => RangedZombie(health, strength, speed)
@@ -415,13 +416,16 @@ FastZombie.prototype = Object.create(Zombie.prototype);
  * @param {number} speed            The zombie's speed.
  */
 
+ this.RangedZombie = function(health, strength, speed){
+  Zombie.call(this, health, strength, speed);
+ };
 
 /**
  * StrongZombie Extends Zombie Class
  * -----------------------------
  */
 
-
+RangedZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Class => ExplodingZombie(health, strength, speed)
@@ -438,14 +442,16 @@ FastZombie.prototype = Object.create(Zombie.prototype);
  * @param {number} speed            The zombie's speed.
  */
 
+ this.ExplodingZombie = function(health, strength, speed){
+  Zombie.call(this, health, strength, speed);
+ };
 
 /**
  * ExplodingZombie Extends Zombie Class
  * -----------------------------
  */
 
-
-
+ExplodingZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Sample run.
